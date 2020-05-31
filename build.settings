@@ -1,0 +1,207 @@
+--
+-- For more information on build.settings see the Corona SDK Build Guide at:
+-- http://docs.coronalabs.com/guide/distribution/buildSettings/index.html
+--
+
+settings =
+{
+	
+	orientation =
+	{
+		-- Supported values for orientation:
+		-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+
+		default = "portrait",
+		supported = { "portrait", }
+	},
+	
+
+    ----------------------------------------------------------------------------
+	-- Enable / Disable Ad networks as required
+    ----------------------------------------------------------------------------
+    plugins =
+    {
+        
+
+     	----------------------------------------------------------------------------
+    	-- Vungle Video Ads  |  Set iPhone and Android Values as required.
+    	----------------------------------------------------------------------------
+		["CoronaProvider.ads.vungle"] =
+        {
+            publisherId = "com.vungle"
+        },
+
+         ----------------------------------------------------------------------------
+    	-- AdMob V2  |  Set iPhone and Android Values as required.
+    	----------------------------------------------------------------------------
+		["plugin.google.play.services"] =
+		{
+	      publisherId = "com.coronalabs",
+	      --supportedPlatforms = { android=true, iphone=true, ["iphone-sim"]=true },
+		},
+
+        ["CoronaProvider.gameNetwork.google"] =
+        {
+            publisherId = "com.coronalabs",
+            supportedPlatforms = { android=true }
+         },
+
+    	----------------------------------------------------------------------------
+
+
+    	--[[
+      	----------------------------------------------------------------------------
+    	-- Apple iAds  |  only works with Apple Devices
+    	----------------------------------------------------------------------------
+		["CoronaProvider.ads.iads"] =
+        {
+            publisherId = "com.coronalabs",
+            supportedPlatforms = { iphone=true }
+        },
+    	----------------------------------------------------------------------------
+
+     	----------------------------------------------------------------------------
+    	-- Vungle Video Ads  |  Set iPhone and Android Values as required.
+    	----------------------------------------------------------------------------
+		["CoronaProvider.ads.vungle"] =
+        {
+            publisherId = "com.vungle"
+        },
+        ["plugin.google.play.services"] =
+        {
+            publisherId = "com.coronalabs",
+            supportedPlatforms = { iphone=true, android=true }
+        },
+		--]]
+
+
+    },      
+
+
+
+
+
+
+
+
+	excludeFiles =
+	{
+	    -- Exclude all files at paths which end with "secret.txt"
+        -- all = { "*secret.txt" },
+
+        -- Exclude all Android icon files and .ogg files in the "music" directory
+		iphone = { "Icon-*dpi.png", "music/*.ogg" },
+        
+        -- Exclude iOS "retina" image files and .m4a files in the "music" directory
+		android = { "Icon.png", "Icon-Small-*.png", "Icon*@2x.png", "music/*.m4a" },
+
+        -- Exclude unnecessary assets from OS X desktop apps
+        osx = { "Default*.png", "Icon*.png", "Icon*.ico", "Icon*.icns" },
+
+        -- Exclude unnecessary assets from Win32 desktop apps
+        win32 = { "Default*.png", "Icon*.png", "Icon*.ico", "Icon*.icns" },
+	},
+
+	--
+	-- iOS Section
+	--
+	iphone =
+	{
+		plist =
+		{
+			UIStatusBarHidden = false,
+			UIPrerenderedIcon = true, -- set to false for "shine" overlay
+			--UIApplicationExitsOnSuspend = true, -- uncomment to quit app on suspend
+
+            NSAppTransportSecurity = 
+              { 
+            NSAllowsArbitraryLoads = true }, 
+
+			CFBundleIconFiles =
+			{
+				"Icon.png",
+				"Icon@2x.png",
+				"Icon-167.png",
+				"Icon-60.png",
+				"Icon-60@2x.png",
+				"Icon-60@3x.png",
+				"Icon-72.png",
+				"Icon-72@2x.png",
+				"Icon-76.png",
+				"Icon-76@2x.png",
+				"Icon-Small.png",
+				"Icon-Small@2x.png",
+				"Icon-Small@3x.png",
+				"Icon-Small-40.png",
+				"Icon-Small-40@2x.png",
+				"Icon-Small-50.png",
+				"Icon-Small-50@2x.png",
+			},
+
+            -- Launch image files table
+            UILaunchImages = {
+                {  -- iPhone 4 Portrait
+                    ["UILaunchImageMinimumOSVersion"] = "7.0",
+                    ["UILaunchImageName"] = "Default",
+                    ["UILaunchImageOrientation"] = "Portrait",
+                    ["UILaunchImageSize"] = "{320, 480}"
+                },
+                {  -- iPhone 5 Portrait
+                    ["UILaunchImageMinimumOSVersion"] = "7.0",
+                    ["UILaunchImageName"] = "Default-568h",
+                    ["UILaunchImageOrientation"] = "Portrait",
+                    ["UILaunchImageSize"] = "{320, 568}"
+                },
+                {  -- iPad Portrait
+                    ["UILaunchImageMinimumOSVersion"] = "7.0",
+                    ["UILaunchImageName"] = "Default-Portrait",
+                    ["UILaunchImageOrientation"] = "Portrait",
+                    ["UILaunchImageSize"] = "{768, 1024}"
+                },
+                {  -- iPhone 6 Portrait
+                    ["UILaunchImageMinimumOSVersion"] = "8.0",
+                    ["UILaunchImageName"] = "Default-667h",
+                    ["UILaunchImageOrientation"] = "Portrait",
+                    ["UILaunchImageSize"] = "{375, 667}"
+                },
+                {  -- iPhone 6 Plus Portrait
+                    ["UILaunchImageMinimumOSVersion"] = "8.0",
+                    ["UILaunchImageName"] = "Default-736h",
+                    ["UILaunchImageOrientation"] = "Portrait",
+                    ["UILaunchImageSize"] = "{414, 736}"
+                },
+            },
+
+
+
+
+
+
+			--[[
+			-- iOS app URL schemes:
+			CFBundleURLTypes =
+			{
+				{
+					CFBundleURLSchemes =
+					{
+						"fbXXXXXXXXX",  -- replace XXXXXXXXX with your Facebook appId
+					}
+				}
+			}
+			--]]
+		}
+	},
+	
+	--
+	-- Android Section
+	--
+	android =
+	{
+		usesPermissions =
+		{
+            "android.permission.INTERNET",
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.ACCESS_NETWORK_STATE",
+		},
+	},
+}
